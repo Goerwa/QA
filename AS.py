@@ -1,3 +1,6 @@
+"""
+答案提取
+"""
 import jieba
 import jieba.analyse
 from pyltp import Segmentor,NamedEntityRecognizer,Postagger,Parser,SementicRoleLabeller
