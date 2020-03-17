@@ -1,3 +1,6 @@
+"""
+问题分类的实现
+"""
 from pyltp import Segmentor,Postagger,NamedEntityRecognizer,SementicRoleLabeller,Parser
 from liblin.liblinearutil import *
 from liblin.commonutil import *
