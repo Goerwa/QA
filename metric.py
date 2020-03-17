@@ -2,11 +2,7 @@
 # coding:utf-8
 
 """
-@author: Mingxiang Tuo
-@contact: tuomx@qq.com
-@file: metric.py
-@time: 2019/6/1 15:59
-实验3.4 评价方式包含三个指标，主要看字符级别的bleu1值，其他供参考
+评价方式包含三个指标，主要看字符级别的bleu1值，其他供参考
 1. precision，recall，F1值：取所有开发集上的平均
 2. EM（exact match）值：精确匹配的准确率
 3. 字符级别的bleu1值
