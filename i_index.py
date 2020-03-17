@@ -1,5 +1,5 @@
 """
-倒排索引和检索的实现
+建立倒排索引
 """
 from pyltp import Segmentor,Postagger,NamedEntityRecognizer
 import math
