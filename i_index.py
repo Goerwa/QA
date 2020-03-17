@@ -1,3 +1,6 @@
+"""
+倒排索引和检索的实现
+"""
 from pyltp import Segmentor,Postagger,NamedEntityRecognizer
 import math
 from FMM import FMM
