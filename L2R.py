@@ -1,3 +1,6 @@
+"""
+答案候选句排序
+"""
 import xgboost as xgb
 from xgboost import train,DMatrix
 from sklearn.model_selection import train_test_split
@@ -423,62 +426,4 @@ class L2R():
             # score += 1 / index
             for na in range(len(answer_list)):
                 answer_position[na] = answer_list[na]
-            # print(sorted(answer_position.items(), key=lambda d: d[1], reverse=True))
-            for pi in sorted(answer_position.items(), key=lambda d: d[1], reverse=True):
-                rank.append(pi[0])
-            # print(rank)
-            # print(test_list.index('1'))
-            all_rank.append(rank)
-            score += 1 / (rank.index(test_list.index('1')) + 1)
-
-        print(score)
-        print('测试数量：',test_num)
-        print('MRR：',score  / test_num)
-        with open('l2r/result.txt','w') as f:
-            for rank in all_rank:
-                r_str = '['
-                for r in rank:
-                    r_str += str(r) + ', '
-                r_str += ']\n'
-                f.write(r_str)
-
-
-def test():
-    train_group = []
-    test_group = []
-    ftr = open('l2r/train_group.txt')
-    for line in ftr:
-        train_group.append(int(line[:-1]))
-    fte = open('l2r/test_group.txt')
-    for line in fte:
-        test_group.append(int(line[:-1]))
-    print(train_group)
-    print(test_group)
-    x_train, y_train = load_svmlight_file('l2r/train.txt')
-    x_test, y_test = load_svmlight_file('l2r/test.txt')
-    # print(x_train)
-    # print(y_train)
-
-    train_dmatrix = DMatrix(x_train, y_train)
-    test_dmatrix = DMatrix(x_test)
-
-    train_dmatrix.set_group(train_group)
-
-    params = {'objective': 'rank:pairwise', 'eta': 0.1, 'gamma': 1.0,
-              'min_child_weight': 0.1, 'max_depth': 6}
-    xgb_model = xgb.train(params, train_dmatrix, num_boost_round=30)
-    pred = xgb_model.predict(test_dmatrix)
-    r_l = pred.tolist()
-    with open('AC/answer.txt','w') as fa:
-        for i in r_l:
-            fa.write(str(i))
-            fa.write('\n')
-
-if __name__ == "__main__":
-    my_l2r = L2R()
-    # my_l2r.load_data('data/passages_multi_sentences.json','data/train.json')
-    # my_l2r.get_vec('AC/data_pos.txt')
-    # my_l2r.get_vec('AC/all_sentence.txt')
-    my_l2r.get_test()
-    test()
-    my_l2r.get_precision()
+            # print(sorted(answer_position.items(), 
